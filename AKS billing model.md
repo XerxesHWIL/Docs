@@ -51,6 +51,7 @@ Monthly figures below assume approximately **730 hours per month**.
 | Service | Capacity | Azure retail price |
 |---|---:|---:|
 | Linux VM `Standard_D2s_v5` | 2 vCPU / 8 GiB | ~$84/month |
+| Windows VM `Standard_D2s_v5` | 2 vCPU / 8 GiB | ~$151/month |
 | App Service Premium v3 Linux `P1 v3` | 2 vCPU / 8 GiB | ~$130/month |
 | App Service Premium v3 Linux `P1mv3` | 2 vCPU / 16 GiB | ~$156/month |
 | App Service Premium v3 Linux `P2 v3` | 4 vCPU / 16 GiB | ~$260/month |
@@ -60,19 +61,20 @@ Monthly figures below assume approximately **730 hours per month**.
 Notes:
 
 - Linux VM pricing above is raw compute only.
+- Windows VM pricing above includes the Windows license premium on top of compute.
 - VM pricing does **not** include management, ingress, backups, platform operations, or monitoring.
 - App Service pricing is per **plan**, not per app.
 - AKS cost also includes node VMs, storage, networking, and platform overhead beyond the control plane.
 
 ## Recommended shared AKS hosting tiers
 
-| Tier | Reserved CPU | Reserved RAM | Suggested monthly price | Linux VM reference | App Service reference |
+| Tier | Reserved CPU | Reserved RAM | Suggested monthly price | VM reference | App Service reference |
 |---|---:|---:|---:|---:|---:|
 | **XS** | 0.25 vCPU | 0.5 GiB | **$8-12** | - | - |
 | **S** | 0.5 vCPU | 1 GiB | **$15-20** | - | - |
 | **M** | 1 vCPU | 2 GiB | **$28-38** | - | - |
-| **L** | 2 vCPU | 4 GiB | **$70-85** | ~$84 VM floor | ~$130 App Service P1v3 |
-| **XL** | 2 vCPU | 8 GiB | **$110-125** | ~$84 Linux VM D2s v5 | ~$130 App Service P1v3 |
+| **L** | 2 vCPU | 4 GiB | **$70-85** | ~$84 Linux / ~$151 Windows VM floor | ~$130 App Service P1v3 |
+| **XL** | 2 vCPU | 8 GiB | **$110-125** | ~$84 Linux / ~$151 Windows VM D2s v5 | ~$130 App Service P1v3 |
 | **2XL** | 4 vCPU | 8 GiB | **$150-175** | - | - |
 | **3XL** | 4 vCPU | 16 GiB | **$210-240** | - | ~$260 App Service P2v3 |
 | **4XL** | 8 vCPU | 16 GiB | **$300-340** | - | - |
