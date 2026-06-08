@@ -1,4 +1,4 @@
-# Azure managed application hosting pricing
+# AKS billing model
 
 This document summarizes a competitive pricing model for hosting customer applications on a shared Azure Kubernetes Service (AKS) platform, compared with Azure App Service Premium and Azure Linux virtual machines.
 
@@ -77,6 +77,50 @@ Notes:
 | **3XL** | 4 vCPU | 16 GiB | **$210-240** | - | ~$260 App Service P2v3 |
 | **4XL** | 8 vCPU | 16 GiB | **$300-340** | - | - |
 | **5XL** | 8 vCPU | 32 GiB | **$430-480** | - | ~$520 App Service P3v3 |
+
+## What is included in the suggested monthly price
+
+Yes, the **suggested monthly price** for the shared AKS tiers already assumes that management overhead is included. It is not intended to be a raw compute resale price only.
+
+### Internal pricing split
+
+| Component | Typical share |
+|---|---:|
+| **Raw infrastructure** | **55-70%** |
+| **Platform overhead** | **15-25%** |
+| **Management / support margin** | **15-25%** |
+
+### What each component covers
+
+- **Raw infrastructure** covers node VM capacity, AKS cluster SLA overhead, baseline storage, load balancer usage, and shared network costs
+- **Platform overhead** covers shared cluster headroom, ingress, upgrades, patching, CI/CD integration, backup platform, registry, and platform tooling
+- **Management / support margin** covers service operations, platform troubleshooting, onboarding effort, administration time, and business margin
+
+### Example split
+
+For an **XL** tier at **$120/month**, a sensible internal model could be:
+
+- **$70-80** for infrastructure
+- **$20-25** for shared platform overhead
+- **$15-25** for management and margin
+
+### Recommended way to package it
+
+The simplest commercial packaging is:
+
+1. one **hosting price** that already includes platform management
+2. **storage** billed separately when needed
+3. **monitoring** billed separately as an add-on
+
+Internally, it can still be modeled as:
+
+**Customer price = reserved resource price + platform fee**
+
+Example:
+
+- **Resource fee:** based on CPU and RAM reservation
+- **Platform fee:** fixed per application, such as **$10-30/app/month** depending on tier
+- **Monitoring:** separate
 
 ## Recommended positioning
 
