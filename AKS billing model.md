@@ -203,6 +203,34 @@ Monitoring should be sold as a separate add-on.
 | **Standard** | **$29/month** |
 | **Advanced** | **$69/month** |
 
+## Authentication add-on
+
+If customer authentication is required, it should be billed as a separate add-on.
+
+### Recommended authentication component
+
+Use **oauth2-proxy** as the shared authentication layer in front of the customer application when login is required.
+
+This add-on typically covers:
+
+- oauth2-proxy deployment and configuration
+- identity provider integration such as **Azure Entra ID**, **GitHub**, or another OIDC provider
+- ingress authentication configuration
+- session and cookie management
+- platform-side maintenance of the authentication component
+
+### Suggested pricing
+
+| Authentication option | What is included | Suggested monthly price |
+|---|---|---:|
+| **None** | No authentication layer managed by the platform | **$0** |
+| **Standard auth** | Shared oauth2-proxy setup for one application | **$15-25** |
+| **Advanced auth** | More complex identity provider setup, additional configuration, or stricter access rules | **$30-50** |
+
+For most customers, a practical default is:
+
+- **oauth2-proxy authentication add-on:** **$19/month**
+
 ## Recommended sales model
 
 For each customer application:
@@ -210,12 +238,14 @@ For each customer application:
 1. Choose a **hosting tier** based on reserved CPU and memory
 2. Add **persistent storage** if required
 3. Add **monitoring** if required
-4. Add optional **overage/burst policy**
+4. Add **authentication** if required
+5. Add optional **overage/burst policy**
 
 Example:
 
 - Hosting: **XL** = 2 vCPU / 8 GiB = **$110-125/month**
 - Monitoring: **Standard** = **$29/month**
+- Authentication: **oauth2-proxy** = **$19/month**
 - Storage: separate
 
 That gives a clear production offer that is still below a comparable App Service Premium plan.
@@ -226,6 +256,7 @@ For most customer applications, the strongest default offer is:
 
 - **Hosting:** XL (2 vCPU / 8 GiB)
 - **Monitoring:** Standard
+- **Authentication:** oauth2-proxy when login is required
 - **Storage:** billed separately
 
 This positions the service as:
