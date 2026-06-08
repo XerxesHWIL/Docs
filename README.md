@@ -2,6 +2,19 @@
 
 This document summarizes a competitive pricing model for hosting customer applications on a shared Azure Kubernetes Service (AKS) platform, compared with Azure App Service Premium and Azure Linux virtual machines.
 
+## Prerequisites and responsibility boundary
+
+Before onboarding, the customer must meet the following prerequisites:
+
+- the application or website source code must be stored in **GitHub** or **Azure DevOps**
+- the customer must provide and maintain access to the source repository and deployment pipeline inputs
+
+Customer responsibility must also be clearly defined:
+
+- the customer is responsible for their **own application**
+- this includes application code, dependencies, security issues in the application, testing, business logic, content, and release approval
+- the hosting provider is responsible for the **platform**, including cluster operations, deployment platform management, patching, and the agreed infrastructure services
+
 ## Goal
 
 Offer managed hosting that is:
