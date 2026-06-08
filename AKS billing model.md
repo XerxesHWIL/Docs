@@ -70,9 +70,9 @@ Notes:
 
 | Tier | Reserved CPU | Reserved RAM | Suggested monthly price | VM reference | App Service reference |
 |---|---:|---:|---:|---:|---:|
-| **S** | 0.5 vCPU | 1 GiB | **$15-20** | - | - |
-| **M** | 1 vCPU | 2 GiB | **$28-38** | - | - |
-| **L** | 2 vCPU | 4 GiB | **$70-85** | ~$84 Linux / ~$151 Windows VM floor | ~$130 App Service P1v3 |
+| **S** | 0.5 vCPU | 1 GiB | **$25-30** | - | - |
+| **M** | 1 vCPU | 2 GiB | **$45-55** | - | - |
+| **L** | 2 vCPU | 4 GiB | **$120** | ~$84 Linux / ~$151 Windows VM floor | ~$130 App Service P1v3 |
 
 ## What is included in the suggested monthly price
 
@@ -94,11 +94,11 @@ Yes, the **suggested monthly price** for the shared AKS tiers already assumes th
 
 ### Example split
 
-For an **L** tier at **$80/month**, a sensible internal model could be:
+For an **L** tier at **$120/month**, a sensible internal model could be:
 
-- **$45-55** for infrastructure
-- **$12-18** for shared platform overhead
-- **$10-15** for management and margin
+- **$70-80** for infrastructure
+- **$20-25** for shared platform overhead
+- **$15-25** for management and margin
 
 ### Recommended way to package it
 
@@ -244,7 +244,7 @@ For each customer application:
 
 Example:
 
-- Hosting: **L** = 2 vCPU / 4 GiB = **$70-85/month**
+- Hosting: **L** = 2 vCPU / 4 GiB = **$120/month**
 - Monitoring: **Standard** = **$29/month**
 - Authentication: **oauth2-proxy** = **$19/month**
 - Storage: separate
