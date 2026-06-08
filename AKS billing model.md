@@ -70,15 +70,9 @@ Notes:
 
 | Tier | Reserved CPU | Reserved RAM | Suggested monthly price | VM reference | App Service reference |
 |---|---:|---:|---:|---:|---:|
-| **XS** | 0.25 vCPU | 0.5 GiB | **$8-12** | - | - |
 | **S** | 0.5 vCPU | 1 GiB | **$15-20** | - | - |
 | **M** | 1 vCPU | 2 GiB | **$28-38** | - | - |
 | **L** | 2 vCPU | 4 GiB | **$70-85** | ~$84 Linux / ~$151 Windows VM floor | ~$130 App Service P1v3 |
-| **XL** | 2 vCPU | 8 GiB | **$110-125** | ~$84 Linux / ~$151 Windows VM D2s v5 | ~$130 App Service P1v3 |
-| **2XL** | 4 vCPU | 8 GiB | **$150-175** | - | - |
-| **3XL** | 4 vCPU | 16 GiB | **$210-240** | - | ~$260 App Service P2v3 |
-| **4XL** | 8 vCPU | 16 GiB | **$300-340** | - | - |
-| **5XL** | 8 vCPU | 32 GiB | **$430-480** | - | ~$520 App Service P3v3 |
 
 ## What is included in the suggested monthly price
 
@@ -100,11 +94,11 @@ Yes, the **suggested monthly price** for the shared AKS tiers already assumes th
 
 ### Example split
 
-For an **XL** tier at **$120/month**, a sensible internal model could be:
+For an **L** tier at **$80/month**, a sensible internal model could be:
 
-- **$70-80** for infrastructure
-- **$20-25** for shared platform overhead
-- **$15-25** for management and margin
+- **$45-55** for infrastructure
+- **$12-18** for shared platform overhead
+- **$10-15** for management and margin
 
 ### Recommended way to package it
 
@@ -159,10 +153,15 @@ This makes the offer:
 
 To protect margin, do not sell 100% of cluster capacity.
 
-Recommended planning target:
+Recommended planning target by pool type:
 
-- **60-70%** sellable utilization
-- **30-40%** reserved for Kubernetes system workloads, autoscaling headroom, failover, upgrades, and noisy-neighbor protection
+| Pool type | Sellable utilization | Reserved capacity | Why |
+|---|---:|---:|---|
+| **Shared multi-tenant pool** | **60-70%** | **30-40%** | Needed for Kubernetes system workloads, autoscaling headroom, failover, upgrades, and noisy-neighbor protection |
+| **Dedicated customer pool** | **75-85%** | **15-25%** | Noisy-neighbor risk is lower, but headroom is still needed for upgrades, failover, and autoscaling |
+| **Low-risk dedicated workload** | **85-90%** | **10-15%** | Only sensible when the customer accepts lower resilience and less spare capacity |
+
+For a dedicated user pool, the same **60-70% sellable** model is usually too conservative unless very high elasticity or failover margin is required.
 
 This is why the price model must be based on **reserved** resources, not instantaneous resource use.
 
@@ -245,7 +244,7 @@ For each customer application:
 
 Example:
 
-- Hosting: **XL** = 2 vCPU / 8 GiB = **$110-125/month**
+- Hosting: **L** = 2 vCPU / 4 GiB = **$70-85/month**
 - Monitoring: **Standard** = **$29/month**
 - Authentication: **oauth2-proxy** = **$19/month**
 - Storage: separate
@@ -256,7 +255,7 @@ That gives a clear production offer that is still below a comparable App Service
 
 For most customer applications, the strongest default offer is:
 
-- **Hosting:** XL (2 vCPU / 8 GiB)
+- **Hosting:** L (2 vCPU / 4 GiB)
 - **Monitoring:** Standard
 - **Authentication:** oauth2-proxy when login is required
 - **Storage:** billed separately
